@@ -4,13 +4,18 @@ main = "_worker.js"
 compatibility_date = "2025-11-04"
 keep_vars = true
 
-#[[kv_namespaces]]
-binding = "KV"			#KV绑定名默认不可修改
+# ------------------------------------------
+# 以下每次更新应用时，自动绑定KV空间
+# ------------------------------------------
+[[kv_namespaces]]
+binding = "KV"			                          #KV绑定名默认不可修改
 id = "49fcc7cb38a0474cb4f9684d7d8706dc"				#KV数据库id
 
+# ------------------------------------------
+# 以下禁用 Worker URL —— .workers.dev
+# ------------------------------------------
 # 全局禁用 workers.dev（作用于 Production 生产环境）
 workers_dev = false
-
-# 如果明确配置了环境（如 preview），也请确保禁用
+# 如果明确配置了环境变量（如 preview），也请确保禁用
 [env.preview]
 workers_dev = false
