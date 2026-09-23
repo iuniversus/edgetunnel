@@ -19,10 +19,10 @@ keep_vars = true
 # 2. 域名访问控制（注意：顶层配置必须写在 [[表块]] 之前）
 # =======================================================================================================
 
-# 禁用生产环境默认分配的域名 (possineo.iuniversus.workers.dev)
+# 禁用生产环境默认分配的域名 (my-worker.***.workers.dev)
 workers_dev = false
 
-# 禁用分支预览部署时自动生成的域名 (*-possineo.iuniversus.workers.dev)
+# 禁用分支预览部署时自动生成的域名 (*-my-worker.***.workers.dev)
 preview_urls = false
 
 
