@@ -3,7 +3,7 @@
 # =======================================================================================================
 
 # Worker 服务名称（在 Cloudflare Dashboard 中显示的项目名）
-name = 'possineo'
+name = 'WORKER_NAME_PLACEHOLDER'        # 占位符，需在 GitHub 仓库添加 Secrets 密钥
 
 # 项目的主入口文件名
 main = "_worker.js"
@@ -58,4 +58,5 @@ persist = true              # 保存追踪记录，以便在 Dashboard 的 Obser
 # KV 数据库绑定
 [[kv_namespaces]]
 binding = "KV"                           # 代码中调用的变量名（如 env.KV.get(...)）
-id = "49fcc7cb38a0474cb4f9684d7d8706dc"   # 对应的 Cloudflare KV 空间 ID
+id = "KV_ID_PLACEHOLDER"                 # 占位符，对应的 Cloudflare KV 空间 ID，需在 GitHub 仓库添加 Secrets 密钥
+
