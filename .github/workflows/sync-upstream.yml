@@ -1,0 +1,33 @@
+name: Sync Upstream Auto
+
+on:
+  schedule:
+    # 每天 UTC 00:00 (北京时间早 8:00) 自动检查并同步原作者更新
+    - cron: '0 0 * * *'
+  workflow_dispatch: # 同时也保留手动点击触发按钮
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # 赋予 Actions 推送代码回仓库的权限
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch and Merge Upstream
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # 1. 替换为原作者真实的 GitHub 仓库地址
+          git remote add upstream https://github.com/cmliu/edgetunnel.git
+          git fetch upstream
+          
+          # 2. 将原作者主分支合并进来（如果原作者主分支叫 master，请把 main 改为 master）
+          git merge upstream/main --no-edit || exit 0
+          
+          # 3. 推送到你自己的仓库（这会自动触发你的 deploy.yml 部署工作流）
+          git push origin main
